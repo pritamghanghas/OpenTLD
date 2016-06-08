@@ -26,6 +26,8 @@ project(OpenTLD)
 
 cmake_minimum_required(VERSION 2.6)
 
+find_package(OpenCV REQUIRED)
+
 #-------------------------------------------------------------------------------
 #version
 set(TLD_VERSION_MAJOR 1)
@@ -54,6 +56,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lgomp")
 
 include_directories(src/cvblobs src/imacq src/config src/tld src/mftracker src/main)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 #-------------------------------------------------------------------------------
 #add subdirectories

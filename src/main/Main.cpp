@@ -92,7 +92,7 @@
 
 		printf("Starting at %d %d %d %d\n", bb.x, bb.y, bb.width, bb.height);
 
-		tld->selectObject(grey, &bb);
+		tld->selectObject(cv::cvarrToMat(grey), &bb);
 		skipProcessingOnce = true;
 		reuseFrameOnce = true;
 	}
@@ -112,7 +112,7 @@
 		}
 
 		if(!skipProcessingOnce) {
-			tld->processImage(img);
+			tld->processImage(cv::cvarrToMat(img));
 		} else {
 			skipProcessingOnce = false;
 		}
@@ -187,7 +187,7 @@
 					ForegroundDetector* fg = tld->detectorCascade->foregroundDetector;
 
 					if(fg->bgImg.empty()) {
-						fg->bgImg = cvCloneImage(grey);
+						fg->bgImg = cv::cvarrToMat(cvCloneImage(grey));
 					} else {
 						fg->bgImg.release();
 					}
@@ -224,7 +224,7 @@
 
 					Rect r = Rect(box);
 
-					tld->selectObject(grey, &r);
+					tld->selectObject(cv::cvarrToMat(grey), &r);
 				}
 			}
 
@@ -245,6 +245,7 @@
 	}
 
 	if(exportModelAfterRun) {
+        printf("writing model to file %s\n", modelExportFile);
 		tld->writeToFile(modelExportFile);
 	}
 }

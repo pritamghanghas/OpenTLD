@@ -10,6 +10,7 @@ SET(OPENTLD_LIB_DIRS ${bin_dir}/src/cvblobs ${bin_dir}/src/config ${bin_dir}/src
 LINK_DIRECTORIES(${OPENTLD_LIB_DIRS})
 
 set(OPENTLD_LIBS main tld config imacq cvblobs mftracker )
+target_link_libraries(cmt ${OpenCV_LIBS})
 
 
 

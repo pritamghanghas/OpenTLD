@@ -26,6 +26,7 @@
 #include "TLD.h"
 #include "NNClassifier.h"
 #include "TLDUtil.h"
+#include "opencv2/imgproc.hpp"
 #include <iostream>
 
 using namespace std;
@@ -98,6 +99,7 @@ void TLD::processImage(Mat img) {
 	currImg = grey_frame; // Store new image , right after storeCurrentData();
 
 	if(trackerEnabled) {
+//        printf("tracker is enabled\n");
 		medianFlowTracker->track(prevImg, currImg, prevBB);
 	}
 
